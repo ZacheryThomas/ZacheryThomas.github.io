@@ -36,15 +36,13 @@
 				move_right_eye(0,0);
 				
 				function move_left_eye(x, y){
-					loc = $("#facecontainer").offset()
-					faceWidth = $(".face").width()
-					faceHeight = $(".face").height()
-					maxY = (faceHeight * .35) + loc.top;
-					minY = (faceHeight * .3) + loc.top;
-					maxX = (faceWidth * .4) + loc.left;
-					minX = (faceWidth * .28) + loc.left;
-					centerX = ((maxX - minX) / 2) + minX
-					centerY = ((maxY - minY) / 2) + minY
+					var loc = $("#facecontainer").offset()
+					var faceWidth = $(".face").width()
+					var faceHeight = $(".face").height()
+					var maxY = (faceHeight * .35) + loc.top;
+					var minY = (faceHeight * .3) + loc.top;
+					var maxX = (faceWidth * .4) + loc.left;
+					var minX = (faceWidth * .28) + loc.left;
 					if (x > maxX){
 						x = maxX;
 					}
@@ -57,19 +55,19 @@
 					if (y < minY){
 						y = minY;
 					}
-					ly = $("#left_eye").height() / 2;
-					lx = $("#left_eye").width() / 2;
+					var ly = $("#left_eye").height() / 2;
+					var lx = $("#left_eye").width() / 2;
 					$("#left_eye").offset({top: y - ly, left: x - lx})
 				}
 
 				function move_right_eye(x, y){
-					loc = $("#facecontainer").offset()
-					faceWidth = $(".face").width()
-					faceHeight = $(".face").height()
-					maxY = (faceHeight * .3) + loc.top;
-					minY = (faceHeight * .27) + loc.top;
-					maxX = (faceWidth * .75) + loc.left;
-					minX = (faceWidth * .63) + loc.left;
+					var loc = $("#facecontainer").offset()
+					var faceWidth = $(".face").width()
+					var faceHeight = $(".face").height()
+					var maxY = (faceHeight * .3) + loc.top;
+					var minY = (faceHeight * .27) + loc.top;
+					var maxX = (faceWidth * .75) + loc.left;
+					var minX = (faceWidth * .63) + loc.left;
 					if (x > maxX){
 						x = maxX;
 					}
@@ -82,14 +80,21 @@
 					if (y < minY){
 						y = minY;
 					}
-					ly = $("#right_eye").height() / 2;
-					lx = $("#right_eye").width() / 2;
+					var ly = $("#right_eye").height() / 2;
+					var lx = $("#right_eye").width() / 2;
 					$("#right_eye").offset({top: y - ly, left: x - lx})
 				}
 				
-				$("#facecontainer").mousemove(function(e) {					
+				$(document).mousemove(function(e) {					
 					move_left_eye(e.pageX, e.pageY)
 					move_right_eye(e.pageX, e.pageY)
+				});
+				
+				$(document).on('touchstart', '#box', function(e) {
+					var pageX = e.originalEvent.touches[0].pageX;
+					var pageY = e.originalEvent.touches[0].pageY;
+					move_left_eye(pageX, pageY)
+					move_right_eye(pageX, pageY)
 				});
 				
 				$( window ).resize(function(e) {
