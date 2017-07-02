@@ -1,0 +1,140 @@
+<html>
+	<head>
+		<title>Zach's Palace</title>
+		<style>
+			#facecontainer {
+				position: absolute;
+				width: 640px;
+				height: 480px;
+				margin-left: -320px;
+				margin-top: -270px;
+				left: 50%;
+				top: 50%;
+				overflow: hidden;
+				background: black;
+			}
+			
+			img {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.eye {
+			  z-index: 1;
+			}
+			
+			.face {
+			  z-index: 3;
+			}
+		</style>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+		<script>			
+			$(document).ready(function(){
+				//put eyes in right place
+				move_left_eye(0,0);
+				move_right_eye(0,0);
+				
+				date = new Date()
+				idle_time = date.getTime() + 1000
+				
+				function move_left_eye(x, y){
+					var loc = $("#facecontainer").offset()
+					var faceWidth = $(".face").width()
+					var faceHeight = $(".face").height()
+					var maxY = (faceHeight * .35) + loc.top;
+					var minY = (faceHeight * .3) + loc.top;
+					var maxX = (faceWidth * .4) + loc.left;
+					var minX = (faceWidth * .28) + loc.left;
+					if (x > maxX){
+						x = maxX;
+					}
+					if (x < minX){
+						x = minX;
+					}
+					if (y > maxY){
+						y = maxY;
+					}
+					if (y < minY){
+						y = minY;
+					}
+					var ly = $("#left_eye").height() / 2;
+					var lx = $("#left_eye").width() / 2;
+					$("#left_eye").offset({top: y - ly, left: x - lx})
+				}
+
+				function move_right_eye(x, y){
+					var loc = $("#facecontainer").offset()
+					var faceWidth = $(".face").width()
+					var faceHeight = $(".face").height()
+					var maxY = (faceHeight * .3) + loc.top;
+					var minY = (faceHeight * .27) + loc.top;
+					var maxX = (faceWidth * .75) + loc.left;
+					var minX = (faceWidth * .63) + loc.left;
+					if (x > maxX){
+						x = maxX;
+					}
+					if (x < minX){
+						x = minX;
+					}
+					if (y > maxY){
+						y = maxY;
+					}
+					if (y < minY){
+						y = minY;
+					}
+					var ly = $("#right_eye").height() / 2;
+					var lx = $("#right_eye").width() / 2;
+					$("#right_eye").offset({top: y - ly, left: x - lx})
+				}
+				
+				function getRandomInt(min, max) {
+				    min = Math.ceil(min);
+				    max = Math.floor(max);
+				    return Math.floor(Math.random() * (max - min)) + min;
+				}
+				
+				$(document).mousemove(function(e) {					
+					move_left_eye(e.pageX, e.pageY)
+					move_right_eye(e.pageX, e.pageY)
+					date = new Date()
+					idle_time = date.getTime() + 1000
+				});
+				
+				$(document).on('touchstart', '#box', function(e) {
+					var pageX = e.originalEvent.touches[0].pageX;
+					var pageY = e.originalEvent.touches[0].pageY;
+					move_left_eye(pageX, pageY)
+					move_right_eye(pageX, pageY)
+					date = new Date()
+					idle_time = date.getTime() + 1000
+				});
+				
+				$(window).resize(function(e) {
+					var faceWidth = $(".face").width()
+					var faceHeight = $(".face").height()
+					$("#left_eye").offset({top:faceHeight * .1, left:faceWidth * .2})
+					$("#right_eye").offset({top:faceHeight * .1, left:faceWidth * .5})
+				});
+				
+				setInterval(function(){
+					current_date = new Date()
+					current_time = current_date.getTime()
+					if (current_time > idle_time){
+						x = getRandomInt(0, 1000)
+						y = getRandomInt(0, 1000)
+						move_left_eye(x, y)
+						move_right_eye(x, y)
+					}
+				}, 1000);
+			});
+		</script>
+	<head/>
+	<body>
+		<div id="facecontainer">
+			<img class="eye" width="35%" id="left_eye" src="http://www.zacherythomas.com/images/brown_eyes.png"/>
+			<img class="eye" width="30%" id="right_eye" src="http://www.zacherythomas.com/images/brown_eyes.png"/>
+			<img class="face" width="100%" src="http://www.zacherythomas.com/images/face.png"/>
+		</div>
+	</body>
+</html>
