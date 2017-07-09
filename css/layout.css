@@ -34,6 +34,8 @@ header {
    min-height: 500px;
    width: 100%;
    background: #161415 url(../images/header-background.jpg) no-repeat top center;
+   background: #161415 url(../images/pexels-photo.jpg) no-repeat top center;
+   background: #161415 url(../images/stars.jpg) no-repeat top center;
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    text-align: center;
@@ -180,6 +182,7 @@ ul#nav li a {
 
 ul#nav li a:active { background-color: transparent !important; }
 ul#nav li.current a { color: #F06000; }
+ul#nav li.current a { color: #0F9095; }
 
 
 /* ------------------------------------------------------------------ */
@@ -207,8 +210,8 @@ ul#nav li.current a { color: #F06000; }
 }
 #about .profile-pic {
    position: relative;
-   width: 120px;
-   height: 120px;
+   width: 200px;
+   height: 200px;
    border-radius: 100%;
 }
 #about .contact-details { width: 41.66667%; }
@@ -972,6 +975,7 @@ footer .social-links li {
     padding: 0;
     margin-left: 42px;
     color: #F06000;
+    color: #0F9095;
 }
 
 footer .social-links li:first-child { margin-left: 0; }
