@@ -152,7 +152,7 @@ function set_bounds(){
 }
 
 function add_image(image, eyes){
-    var scale = .2
+    var scale = .5
 
     let width = $(window).width();
     let height = $(window).height();
