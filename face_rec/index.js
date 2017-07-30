@@ -27,7 +27,7 @@ function init() {
         engine: engine,
         options: {
         wireframes: false,
-        background: 'transparent',
+        background:  'transparent',
         width: width,
         height: height
         }
@@ -98,7 +98,7 @@ function init() {
                 // allow bodies on mouse to rotate
                 angularStiffness: 0,
                 render: {
-                    visible: false
+                    visible: true
                 }
             }
         });
@@ -112,11 +112,9 @@ function init() {
 
     Render.run(render);
 
-    let num = 0;
     function update() {
         engine.world.gravity.x = 0 //Math.sin(num / 100);
-        engine.world.gravity.y = 0 //Math.cos(num / 100);
-        num += 1.7;
+        engine.world.gravity.y = 1 //Math.cos(num / 100);
         idRAF = requestAnimationFrame(update.bind(this));
     }
     update();
@@ -152,7 +150,7 @@ function set_bounds(){
 }
 
 function add_image(image, eyes){
-    var scale = .5
+    var scale = .25
 
     let width = $(window).width();
     let height = $(window).height();
@@ -176,34 +174,56 @@ function add_image(image, eyes){
                 yScale: scale
             }
         },
-        mass: 0
     });
     objects.push(man)
     
     for (eye of eyes){
-        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye[2], { 
+        // Whites of Eyes
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye[2] / 2, { 
             collisionFilter: { 
                 category: 0x0000
             },
             render: {
-                sprite: {
-                    texture: '../images/brown_eyes_round.png',
-                    xScale: scale * .1,
-                    yScale: scale * .1
-                }
+                fillStyle: '#FFFFFF'
             },
-            mass: 0
         }));
+
+        objects[objects.length - 1].mass = 0.1
 
         objects.push(constraint = Constraint.create({
             bodyA: objects[0],
             pointA: { x: eye_center_x() - (img_width/2), y: eye_center_y() - (img_height/2)},
             bodyB: objects[objects.length - 1],
-            //pointB: { x: (width/2 - img_width/2) + (scale * eye[0]) , y: (height/2 - img_height/2) + (scale * eye[1])}
+            render: {
+                visible: false
+            }
+        }));
+
+        // Pupils
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye[2] / 4, { 
+            collisionFilter: { 
+                category: 0x0000
+            },
+            render: {
+                fillStyle: '#000000'
+            },
+        }));
+
+        objects[objects.length - 1].mass = 0.1
+
+        objects.push(constraint = Constraint.create({
+            // Link to Whites of Eyes
+            bodyA: objects[0],
+            pointA: { x: eye_center_x() - (img_width/2), y: eye_center_y() - (img_height/2)},
+            bodyB: objects[objects.length - 1],
+            stiffness: 0.2,
+            damping: 0,
+            render: {
+                visible: false
+            }
         }));
     }
     World.add(engine.world, objects);
-    //World.add(engine.world, man);
 }
 
 init();

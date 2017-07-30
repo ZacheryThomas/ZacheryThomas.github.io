@@ -1,4 +1,5 @@
-$('input').change(function(event) {
+$('input').submit(function(event) {
+    $(".container").append("<img id='img' class='hide' src=''>")
     var preview = document.getElementById('img')
     var file    = document.querySelector('input[type=file]').files[0]; //sames as here
     var reader  = new FileReader();
@@ -12,11 +13,11 @@ $('input').change(function(event) {
     reader.onloadend = function () {
         preview.src = reader.result;
     }
+            $('img').on('load', function(){
+            find_eyes(this)
+            $('img').remove()
+        })
 });
-
-$(img).on('load', function(){
-    find_eyes(this)
-})
 
 function find_eyes(preview){
     var img = document.getElementById('img');

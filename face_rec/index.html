@@ -7,19 +7,30 @@
             top: -1000px;
         }
         div.container {
-            width: 50%;
-            margin: 0 auto;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
         .hide {
             visibility: hidden;
         }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
         </style>
     </head>
     <body>
-        <div class="container" style="position: absolute">
+        <div class="container">
             <input type="file"><br>
             <div id="image-container">
-                <img id="img" class="hide" src="" alt="Image preview...">
             </div>
         </div>
     </body>
