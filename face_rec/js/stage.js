@@ -4,6 +4,7 @@ let Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     MouseConstraint = Matter.MouseConstraint,
     Constraint = Matter.Constraint,
+    Events = Matter.Events,
     Mouse = Matter.Mouse;
 
 let engine = Engine.create();
@@ -112,6 +113,14 @@ function init() {
 
     Render.run(render);
 
+    Events.on(engine, "collisionStart", function(event){
+        //console.log(event)
+        num = Math.round((Math.random() * 1))
+        console.log(num)
+        var audio = new Audio('audio/rattle' + num + '.mp3');
+        audio.play();
+    })
+
     function update() {
         engine.world.gravity.x = 0 //Math.sin(num / 100);
         engine.world.gravity.y = 1 //Math.cos(num / 100);
@@ -150,7 +159,7 @@ function set_bounds(){
 }
 
 function add_image(image, eyes){
-    var scale = .5
+    var scale = .3
 
     let width = $(window).width();
     let height = $(window).height();
@@ -191,7 +200,7 @@ function add_image(image, eyes){
             },
         }));
 
-        objects[objects.length - 1].mass = 0.1
+        objects[objects.length - 1].mass = 0.0000000001
 
         objects.push(constraint = Constraint.create({
             bodyA: objects[0],
@@ -199,7 +208,9 @@ function add_image(image, eyes){
             bodyB: objects[objects.length - 1],
             render: {
                 visible: false
-            }
+            },
+            stiffness: 1,
+            damping: 1,
         }));
 
         // Pupils
@@ -212,20 +223,21 @@ function add_image(image, eyes){
             },
         }));
 
-        objects[objects.length - 1].mass = 0.1
+        objects[objects.length - 1].mass = 0.0000000001
 
         objects.push(constraint = Constraint.create({
             // Link to Whites of Eyes
             bodyA: objects[0],
             pointA: { x: eye_center_x() - (img_width/2), y: eye_center_y() - (img_height/2)},
             bodyB: objects[objects.length - 1],
-            stiffness: 0.2,
-            damping: 0,
+            stiffness: 0.1,
+            damping: 0.1,
             render: {
                 visible: false
             }
         }));
     }
+    console.log(objects[0])
     World.add(engine.world, objects);
 }
 

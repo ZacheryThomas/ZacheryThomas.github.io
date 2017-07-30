@@ -17,27 +17,28 @@ $(document).ready(function(){
             preview.src = reader.result;
         }
         $('img').on('load', function(){
-            find_eyes(this)
+            find_eyes(preview, add_image)
             $('img').remove()
             $('input').val('')
         })
     });
 });
 
-function find_eyes(preview){
+function find_eyes(preview, add_image){
     var img = document.getElementById('img');
-    var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
+    var tracker = new tracking.ObjectTracker(['eye']);
     var eyes = []
 
     tracker.setStepSize(1.7);
     tracking.track('#img', tracker);
     tracker.on('track', function(event) {
-    event.data.forEach(function(rect) {
-        eyes.push([rect.x, rect.y, rect.width, rect.height])
-        //window.plot(rect.x, rect.y, rect.width, rect.height);
+        event.data.forEach(function(rect) {
+            if (eyes.length < 6){
+                eyes.push([rect.x, rect.y, rect.width, rect.height])
+            }
+        });
+        add_image(preview, eyes)
     });
-    add_image(preview, eyes)
-});
 
 
     /*window.plot = function(x, y, w, h) {
