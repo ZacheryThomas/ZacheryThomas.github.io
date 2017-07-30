@@ -150,7 +150,7 @@ function set_bounds(){
 }
 
 function add_image(image, eyes){
-    var scale = .25
+    var scale = .5
 
     let width = $(window).width();
     let height = $(window).height();
@@ -160,6 +160,9 @@ function add_image(image, eyes){
 
     var eye_center_x = function(){ return scale * (eye[0] + eye[2]/2) }
     var eye_center_y = function(){ return scale * (eye[1] + eye[2]/2) }
+
+    var eye_size = function(){ return scale * eye[2]}
+    var pupil_size = function(){ return scale * eye[2] / 2}
 
     var objects = []
 
@@ -179,7 +182,7 @@ function add_image(image, eyes){
     
     for (eye of eyes){
         // Whites of Eyes
-        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye[2] / 2, { 
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye_size(), { 
             collisionFilter: { 
                 category: 0x0000
             },
@@ -200,7 +203,7 @@ function add_image(image, eyes){
         }));
 
         // Pupils
-        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye[2] / 4, { 
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), pupil_size(), { 
             collisionFilter: { 
                 category: 0x0000
             },

@@ -8,9 +8,17 @@
         }
         div.container {
             position: fixed;
-            bottom: 0;
-            width: 100%;
+            bottom: 20%;
+            width: 300;
         }
+        div.centered {
+            left: 50%;
+            margin-left: -150px;
+        }
+        /*.input {
+            width: 200px;
+            left: 50%;
+        }*/
         .hide {
             visibility: hidden;
         }
@@ -25,21 +33,25 @@
             width: 100%;
             height: 100%;
         }
+
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/build/tracking.js"></script>
+        <script src="../js/build/data/face.js"></script>
+        <script src="../js/build/data/eye.js"></script>
+        <script src="../js/build/data/mouth.js"></script>
     </head>
     <body>
-        <div class="container">
-            <input type="file"><br>
-            <div id="image-container">
-            </div>
+        <div class="container centered">
+            <form>
+                <label class="btn btn-primary" for="image_upload">Choose image to upload (PNG, JPG)</label>
+                <input class="input hide" id="image_upload" type="file" accept=".jpg, .jpeg, .png"><br>
+            </form>
         </div>
     </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
-    <script src="../js/build/tracking.js"></script>
-    <script src="../js/build/data/face.js"></script>
-    <script src="../js/build/data/eye.js"></script>
-    <script src="../js/build/data/mouth.js"></script>
     <script src="tracker.js"></script>
     <script src="index.js"></script>
 </html>
