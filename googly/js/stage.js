@@ -1,3 +1,5 @@
+let GOOGLY = false
+
 let Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
@@ -48,48 +50,7 @@ function init() {
         Bodies.rectangle(width + 50, height / 2, 100, height, {
         isStatic: true
         }),
-
-    /*
-    Bodies.rectangle(width / 2, height / 2, vmin * 0.961, vmin * 0.135, {
-      isStatic: true,
-      render: {
-            fillStyle: "white"
-      }
-    }),
-    Bodies.rectangle(width / 2, height / 4 * 3, vmin * 0.37, vmin * 0.131, {
-      isStatic: true,
-      render: {
-            fillStyle: "white"
-      }
-    }),
-    Bodies.circle(width / 2 - (vmin * 0.182), height / 4 * 3, vmin * 0.065, {
-      isStatic: true,
-      render: {
-        fillStyle: "white"
-    }
-    }),
-    Bodies.circle(width / 2 + (vmin * 0.182), height / 4 * 3, vmin * 0.065, {
-      isStatic: true,
-      render: {
-        fillStyle: "white"
-        }
-    })
-    */
-  ]);
-
-  /*
-  for (let i = 0; i < 150; i++) {
-    let radius = Math.round(10 + (Math.random() * vmin / 30));
-    World.add(engine.world, Bodies.circle(
-      Math.random() * width,
-      Math.random() * height / 4,
-      radius, {
-        render: {
-          fillStyle: ['#EA1070', '#EAC03C', '#25DDBC', '#007DB0', '#252B7F', '#FF6040'][Math.round(Math.random() * 6 - 0.5)]
-        }
-      }
-    ))
-  }*/
+    ]);
 
     // add mouse control
     var mouse = Mouse.create(render.canvas),
@@ -113,49 +74,39 @@ function init() {
 
     Render.run(render);
 
-    Events.on(engine, "collisionStart", function(event){
-        //console.log(event)
-        num = Math.round((Math.random() * 1))
-        console.log(num)
-        var audio = new Audio('audio/rattle' + num + '.mp3');
-        audio.play();
-    })
-
+    var BEAT_FPS = Music.frames_per_beat() * 1
+    var frame = 0
+    var sub_loop_id = ''
     function update() {
-        engine.world.gravity.x = 0 //Math.sin(num / 100);
-        engine.world.gravity.y = 1 //Math.cos(num / 100);
-        idRAF = requestAnimationFrame(update.bind(this));
+        main_loop = requestAnimationFrame(update.bind(this));
+        if (GOOGLY == true && sub_loop_id == ''){
+            function subloop(){
+                sub_loop_id = requestAnimationFrame(subloop.bind(this))
+                frame += 1
+                if (frame >= BEAT_FPS){
+                    frame = 0
+                    count = 1
+
+                    for (body of engine.world.bodies) {
+                        // If body is person, move randomly
+                        if (body.label == 'person'){
+                            x_force =  ( Math.random() * .05) * body.mass
+                            if ( Math.random() > 0.5 ){
+                                x_force = - x_force
+                            }
+                            body.force = {'x':x_force, 'y': -.05 * body.mass }
+                        }
+                        count += 1
+                    }
+                }
+            }
+            subloop()
+        }
+        if (GOOGLY == false && sub_loop_id != ''){
+            cancelAnimationFrame(sub_loop_id)
+        }
     }
     update();
-}
-
-top = ''
-bottom = ''
-left = ''
-right = ''
-function set_bounds(){
-    World.remove(engine.world, [
-    // borders
-        top, bottom, left, right
-    ]);
-    let width = $(window).width();
-    let height = $(window).height();
-    bottom = Bodies.rectangle(width / 2, height + 50, width, 100, {
-      isStatic: true
-    }),
-    top = Bodies.rectangle(width / 2, -50, width, 100, {
-      isStatic: true
-    }),
-    left = Bodies.rectangle(-50, height / 2, 100, height, {
-      isStatic: true
-    }),
-    right = Bodies.rectangle(width + 50, height / 2, 100, height, {
-      isStatic: true
-    })
-    World.add(engine.world, [
-    // borders
-        top, bottom, left, right
-    ]);
 }
 
 function add_image(image, eyes){
@@ -187,6 +138,12 @@ function add_image(image, eyes){
             }
         },
     });
+
+    // If an object has eyes, label it as a person
+    if (eyes.length) {
+        man.label = 'person'
+    }
+
     objects.push(man)
     
     for (eye of eyes){
@@ -196,7 +153,7 @@ function add_image(image, eyes){
                 category: 0x0000
             },
             render: {
-                fillStyle: '#FFFFFF'
+                fillStyle: 'white'
             },
         }));
 
@@ -219,7 +176,7 @@ function add_image(image, eyes){
                 category: 0x0000
             },
             render: {
-                fillStyle: '#000000'
+                fillStyle: 'black'
             },
         }));
 
@@ -237,15 +194,14 @@ function add_image(image, eyes){
             }
         }));
     }
-    console.log(objects[0])
+
     World.add(engine.world, objects);
 }
 
 init();
 
 $(window).resize(function() {
-    //$('canvas').width($(window).width())
-    //$('canvas').height($(window).height())
-    //set_bounds()
+    Music.stop_song()
+    GOOGLY = false
     init()
 });

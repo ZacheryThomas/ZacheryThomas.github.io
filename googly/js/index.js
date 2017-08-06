@@ -1,3 +1,5 @@
+let Music = new MusicController()
+
 jQuery('input').css('opacity', '0.0');
 
 $(document).ready(function(){
@@ -16,6 +18,7 @@ $(document).ready(function(){
         reader.onloadend = function () {
             preview.src = reader.result;
         }
+
         $('img').on('load', function(){
             find_eyes(preview, add_image)
             $('img').remove()
@@ -36,19 +39,13 @@ function find_eyes(preview, add_image){
             if (eyes.length < 6){
                 eyes.push([rect.x, rect.y, rect.width, rect.height])
             }
+            GOOGLY = true
         });
+
+        if (eyes.length > 0) {
+            Music.play_song()
+        }
+
         add_image(preview, eyes)
     });
-
-
-    /*window.plot = function(x, y, w, h) {
-        var rect = document.createElement('img')
-        document.querySelector('#image-container').appendChild(rect);
-        rect.src = '../images/brown_eyes_round.png'
-        rect.classList.add('rect');
-        rect.style.width = w + 'px';
-        rect.style.height = h + 'px';
-        rect.style.left = (img.offsetLeft + x) + 'px';
-        rect.style.top = (img.offsetTop + y) + 'px';
-    };*/
 }
