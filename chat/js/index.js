@@ -1,9 +1,23 @@
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+
 navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function (stream, err) {
   if (err) return console.error(err)
 
   var Peer = SimplePeer
   var peer = new Peer({
-    initiator: location.hash === '#init',
+    initiator: GetURLParameter('init') === 'true',
     trickle: false,
     stream: stream
   })
