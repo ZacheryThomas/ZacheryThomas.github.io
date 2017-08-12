@@ -23,11 +23,11 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
   })
 
   peer.on('signal', function (data) {
-    document.getElementById('yourId').value = JSON.stringify(data)
+    document.getElementById('yourId').value = lzw_encode(JSON.stringify(data))
   })
 
   document.getElementById('connect').addEventListener('click', function () {
-    var otherId = JSON.parse(document.getElementById('otherId').value)
+    var otherId = lzw_decode(JSON.parse(document.getElementById('otherId').value))
     peer.signal(otherId)
   })
 
