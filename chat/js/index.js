@@ -27,7 +27,7 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
   })
 
   document.getElementById('connect').addEventListener('click', function () {
-    var otherId = lzw_decode(JSON.parse(document.getElementById('otherId').value))
+    var otherId = JSON.parse(lzw_decode(document.getElementById('otherId').value))
     peer.signal(otherId)
   })
 
