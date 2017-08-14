@@ -52,8 +52,12 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
     result = event.results[event.results.length - 1][0].transcript
     var utterance = new SpeechSynthesisUtterance(result);
 
-    responsiveVoice.speak(result)
-    peer.send(result)
+    try {
+      peer.send(result)
+    }
+    catch (err) {
+      console.log(err)
+    }
     console.log("what you said: " + result)
   }
   recognition.start();
