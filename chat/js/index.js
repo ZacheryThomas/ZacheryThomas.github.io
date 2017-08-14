@@ -31,13 +31,9 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
     peer.signal(otherId)
   })
 
-  document.getElementById('send').addEventListener('click', function () {
-    var yourMessage = document.getElementById('yourMessage').value
-    peer.send(yourMessage)
-  })
-
   peer.on('data', function (data) {
-    document.getElementById('messages').textContent += data + '\n'
+    console.log("what the other person said: " + result)
+    responsiveVoice.speak(data)
   })
 
   peer.on('stream', function (stream) {
@@ -47,4 +43,19 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
     video.src = window.URL.createObjectURL(stream)
     video.play()
   })
+
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event) {
+    result = event.results[event.results.length - 1][0].transcript
+    var utterance = new SpeechSynthesisUtterance(result);
+
+    responsiveVoice.speak(result)
+    peer.send(result)
+    console.log("what you said: " + result)
+  }
+  recognition.start();
+
 })
