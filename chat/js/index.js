@@ -32,8 +32,8 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
   })
 
   peer.on('data', function (data) {
-    console.log("what the other person said: " + result)
-    responsiveVoice.speak(data)
+    console.log("what the other person said: " + data)
+    responsiveVoice.speak("" + data)
   })
 
   peer.on('stream', function (stream) {
