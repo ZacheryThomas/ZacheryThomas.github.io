@@ -60,6 +60,10 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false}).then(function 
     }
     console.log("what you said: " + result)
   }
+  setInterval(function(){
+    console.log('refresh')
+    recognition.stop();
+    recognition.start();
+  }, 60 * 1000)
   recognition.start();
-
 })
