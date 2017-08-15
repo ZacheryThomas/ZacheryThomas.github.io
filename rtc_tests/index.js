@@ -6,7 +6,7 @@ var webrtc = new SimpleWebRTC({
     // immediately ask for camera access
     autoRequestMedia: true,
 
-    url: 'https://ec2-34-207-147-139.compute-1.amazonaws.com:8888'
+    url: 'https://ec2-34-207-147-139.compute-1.amazonaws.com'
 });
 
 // we have to wait until it's ready
