@@ -2,7 +2,16 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
 // PeerJS object
-var peer = new Peer({ key: 'lwjd5qra8257b9', debug: 3});
+//var peer = new Peer({ key: 'lwjd5qra8257b9', debug: 3});
+
+var peer = new Peer({host: 'simulchat.com', port: 9000, path: '/myapp', secure: true, debug: 3, config: {'iceServers': [
+  { url: 'stun:stun.l.google.com:19302' },
+  {
+    url: 'turn:numb.viagenie.ca',
+    credential: 'simulchat',
+    username: 'simulchat@gmail.com'
+  }// Pass in optional STUN and TURN server for maximum network compatibility
+]}});
 
 peer.on('open', function(){
   $('#my-id').text(peer.id);
