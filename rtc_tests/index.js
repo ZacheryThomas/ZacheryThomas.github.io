@@ -1,16 +1,144 @@
-var webrtc = new SimpleWebRTC({
-    // the id/element dom element that will hold "our" video
-    localVideoEl: 'localVideo',
-    // the id/element dom element that will hold remote videos
-    remoteVideosEl: 'remoteVideos',
-    // immediately ask for camera access
-    autoRequestMedia: true,
+// Compatibility shim
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-    url: 'https://ec2-34-207-147-139.compute-1.amazonaws.com:8888'
+// PeerJS object
+var peer = new Peer({ key: 'lwjd5qra8257b9', debug: 3});
+
+peer.on('open', function(){
+  $('#my-id').text(peer.id);
 });
 
-// we have to wait until it's ready
-webrtc.on('readyToCall', function () {
-    // you can name it anything
-    webrtc.joinRoom('your awesome room name');
+// Receiving a call
+peer.on('call', function(call){
+  // Answer the call automatically (instead of prompting user) for demo purposes
+  call.answer(window.localStream);
+  step3(call);
 });
+peer.on('error', function(err){
+  alert(err.message);
+  // Return to step 2 if error occurs
+  step2();
+});
+
+// Speech Recognition setup
+function start_speech_rec_send(conn){
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event) {
+    result = event.results[event.results.length - 1][0].transcript
+
+    try {
+      conn.send(result)
+    }
+    catch (err) {
+      console.log(err)
+    }
+    console.log("what you said: " + result)
+  }
+  setInterval(function(){
+    console.log('refresh')
+    try {
+      recognition.start();
+    } catch (err) {
+      console.log('recog already started')
+    }
+  }, 50 * 1000) // reset every 50 seconds
+  recognition.start();
+}
+
+function stop_speech_rec_send() {
+  recognition.stop()
+}
+
+
+// Conneciton Established
+function connection_made(conn){
+  conn.on('open', function(){
+    start_speech_rec_send(conn)
+
+    conn.on('data', function(data){
+      console.log("what the other person said: " + data)
+      responsiveVoice.speak("" + data)
+    });
+  });
+
+  conn.on('close', function(){
+    stop_speech_rec_send()
+  });
+}
+
+
+peer.on('connection', function(conn) {
+  connection_made(conn)
+});
+
+// Click handlers setup
+$(function(){
+  $('#make-call').click(function(){
+    // Initiate a call!
+    var call = peer.call($('#callto-id').val(), window.localStream);
+
+    step3(call);
+  });
+
+  $('#end-call').click(function(){
+    window.existingCall.close();
+    step2();
+  });
+
+  // Retry if getUserMedia fails
+  $('#step1-retry').click(function(){
+    $('#step1-error').hide();
+    step1();
+  });
+
+  // Get things started
+  step1();
+});
+
+function step1 () {
+  // Get audio/video stream
+  navigator.getUserMedia({audio: false, video: true}, function(stream){
+    // Set your video displays
+    $('#my-video').prop('src', URL.createObjectURL(stream));
+
+    window.localStream = stream;
+    step2();
+  }, function(){ $('#step1-error').show(); });
+}
+
+function step2 () {
+  $('#step1, #step3').hide();
+  $('#step2').show();
+}
+
+function step3 (call) {
+  // Hang up on an existing call if present
+  if (window.existingCall) {
+    window.existingCall.close();
+  }
+
+  // Wait for stream on the call, then set peer video display
+  call.on('stream', function(stream){
+    $('#their-video').prop('src', URL.createObjectURL(stream));
+  });
+
+  window.existingCall = call;
+
+  // Establish connection
+  var conn = peer.connect(call.peer)
+
+  connection_made(conn)
+
+  window.existingCall.on('close', function(){
+    conn.close()
+  });
+
+  // UI stuff
+  $('#their-id').text(call.peer);
+  call.on('close', step2);
+  $('#step1, #step2').hide();
+  $('#step3').show();
+}
