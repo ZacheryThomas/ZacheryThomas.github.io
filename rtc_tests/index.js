@@ -1,16 +1,19 @@
 // Compatibility shim
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-// PeerJS object
-//var peer = new Peer({ key: 'lwjd5qra8257b9', debug: 3});
+window.recognition = new webkitSpeechRecognition();
+window.recognition.start();
+window.recognition.continuous = true;
+window.recognition.interimResults = false;
 
+// PeerJS object
 var peer = new Peer({host: 'simulchat.com', port: 9000, path: '/myapp', secure: true, debug: 3, config: {'iceServers': [
   { url: 'stun:stun.l.google.com:19302' },
   {
     url: 'turn:numb.viagenie.ca',
     credential: 'simulchat',
     username: 'simulchat@gmail.com'
-  }// Pass in optional STUN and TURN server for maximum network compatibility
+  }
 ]}});
 
 peer.on('open', function(){
@@ -31,11 +34,7 @@ peer.on('error', function(err){
 
 // Speech Recognition setup
 function start_speech_rec_send(conn){
-  var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = false;
-
-  recognition.onresult = function(event) {
+  window.recognition.onresult = function(event) {
     result = event.results[event.results.length - 1][0].transcript
 
     try {
@@ -49,16 +48,15 @@ function start_speech_rec_send(conn){
   setInterval(function(){
     console.log('refresh')
     try {
-      recognition.start();
+      window.recognition.start();
     } catch (err) {
       console.log('recog already started')
     }
   }, 50 * 1000) // reset every 50 seconds
-  recognition.start();
 }
 
 function stop_speech_rec_send() {
-  recognition.stop()
+  window.recognition.stop()
 }
 
 
