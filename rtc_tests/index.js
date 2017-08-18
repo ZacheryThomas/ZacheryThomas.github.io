@@ -1,11 +1,6 @@
 // Compatibility shim
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-window.recognition = new webkitSpeechRecognition();
-window.recognition.start();
-window.recognition.continuous = true;
-window.recognition.interimResults = false;
-
 // PeerJS object
 var peer = new Peer({host: 'simulchat.com', port: 9000, path: '/myapp', secure: true, debug: 3, config: {'iceServers': [
   { url: 'stun:stun.l.google.com:19302' },
@@ -32,53 +27,8 @@ peer.on('error', function(err){
   step2();
 });
 
-// Speech Recognition setup
-function start_speech_rec_send(conn){
-  window.recognition.onresult = function(event) {
-    result = event.results[event.results.length - 1][0].transcript
-
-    try {
-      conn.send(result)
-    }
-    catch (err) {
-      console.log(err)
-    }
-    console.log("what you said: " + result)
-  }
-  setInterval(function(){
-    console.log('refresh')
-    try {
-      window.recognition.start();
-    } catch (err) {
-      console.log('recog already started')
-    }
-  }, 50 * 1000) // reset every 50 seconds
-}
-
-function stop_speech_rec_send() {
-  window.recognition.stop()
-}
-
-
-// Conneciton Established
-function connection_made(conn){
-  conn.on('open', function(){
-    start_speech_rec_send(conn)
-
-    conn.on('data', function(data){
-      console.log("what the other person said: " + data)
-      responsiveVoice.speak("" + data)
-    });
-  });
-
-  conn.on('close', function(){
-    stop_speech_rec_send()
-  });
-}
-
-
 peer.on('connection', function(conn) {
-  connection_made(conn)
+  speech_events(conn)
 });
 
 // Click handlers setup
@@ -137,7 +87,7 @@ function step3 (call) {
   // Establish connection
   var conn = peer.connect(call.peer)
 
-  connection_made(conn)
+  speech_events(conn)
 
   window.existingCall.on('close', function(){
     conn.close()
