@@ -9,6 +9,8 @@ let Engine = Matter.Engine,
     Events = Matter.Events,
     Mouse = Matter.Mouse;
 
+let bounds = []
+
 let engine = Engine.create();
 
 function init() {
@@ -17,7 +19,6 @@ function init() {
 
     let width = $(window).width();
     let height = $(window).height();
-    let vmin = Math.min(width, height);
 
     engine.events = {};
     World.clear(engine.world);
@@ -26,31 +27,17 @@ function init() {
     engine = Engine.create();
 
     let render = Render.create({
-        element: document.body,
+        element: $('#canvas-container')[0],
         engine: engine,
         options: {
-        wireframes: false,
-        background:  'transparent',
-        width: width,
-        height: height
+            wireframes: false,
+            background:  'transparent',
+            width: width,
+            height: height
         }
     });
 
-    World.add(engine.world, [
-        // borders
-        Bodies.rectangle(width / 2, height + 50, width, 100, {
-        isStatic: true
-        }),
-        Bodies.rectangle(width / 2, -50, width, 100, {
-        isStatic: true
-        }),
-        Bodies.rectangle(-50, height / 2, 100, height, {
-        isStatic: true
-        }),
-        Bodies.rectangle(width + 50, height / 2, 100, height, {
-        isStatic: true
-        }),
-    ]);
+    update_bounds()
 
     // add mouse control
     var mouse = Mouse.create(render.canvas),
@@ -109,14 +96,53 @@ function init() {
     update();
 }
 
+function update_bounds(){
+    let width = $(window).width();
+    let height = $(window).height();
+
+    if (bounds.length > 0){
+      World.remove(engine.world, bounds)
+    }
+    bounds = [ Bodies.rectangle(width / 2, height + 50, width, 100, {
+              isStatic: true
+              }),
+              Bodies.rectangle(width / 2, -50, width, 100, {
+              isStatic: true
+              }),
+              Bodies.rectangle(-50, height / 2, 100, height, {
+              isStatic: true
+              }),
+              Bodies.rectangle(width + 50, height / 2, 100, height, {
+              isStatic: true
+              })]
+
+    World.add(engine.world, bounds);
+}
+
+
 function add_image(image, eyes){
-    var scale = .3
+    var scale = 1
 
     let width = $(window).width();
     let height = $(window).height();
 
     var img_width = image.naturalWidth * scale
     var img_height = image.naturalHeight * scale
+
+    // Set scale to ensure tha no pic takes up more than a third of screen
+    var max_screen_percent = 0.5
+    while (img_width > (max_screen_percent * width) || img_height > (max_screen_percent * height)){
+        scale -= 0.05
+        img_width = image.naturalWidth * scale
+        img_height = image.naturalHeight * scale
+        
+        // Edge cases
+        if (scale < 0){
+            scale = .1
+            break;
+        }
+    }
+
 
     var eye_center_x = function(){ return scale * (eye[0] + eye[2]/2) }
     var eye_center_y = function(){ return scale * (eye[1] + eye[2]/2) }
@@ -127,7 +153,7 @@ function add_image(image, eyes){
     var objects = []
 
     let man = Bodies.rectangle(width/2, height/2, img_width, img_height, {
-        collisionFilter: { 
+        collisionFilter: {
             category: 0x0001
         },
         render: {
@@ -145,11 +171,11 @@ function add_image(image, eyes){
     }
 
     objects.push(man)
-    
+
     for (eye of eyes){
         // Whites of Eyes
-        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye_size(), { 
-            collisionFilter: { 
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), eye_size(), {
+            collisionFilter: {
                 category: 0x0000
             },
             render: {
@@ -171,8 +197,8 @@ function add_image(image, eyes){
         }));
 
         // Pupils
-        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), pupil_size(), { 
-            collisionFilter: { 
+        objects.push(Bodies.circle((width/2 - img_width/2) + eye_center_x(), (height/2 - img_height/2) + eye_center_y(), pupil_size(), {
+            collisionFilter: {
                 category: 0x0000
             },
             render: {

@@ -20,6 +20,26 @@ $(document).ready(function(){
         }
 
         $('img').on('load', function(){
+            var image = $('img')[0]
+
+            // compression
+            var quality = 25;
+            var output_format = 'jpg';
+            image.src = jic.compress(this, quality, output_format).src;
+            
+            // change dimensions
+            var max_dimension = 2000
+            if (image.width > max_dimension){
+                var scale = max_dimension / image.width
+                image.width = max_dimension
+                image.height = image.height * scale
+            } else if(image.height > max_dimension){
+                var scale = max_dimension / image.height
+                image.height = max_dimension
+                image.width = image.width * scale
+            }
+
+
             find_eyes(preview, add_image)
             $('img').remove()
             $('input').val('')
