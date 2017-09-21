@@ -34,7 +34,6 @@ var UserDictation = undefined
 // Speech Recognition setup
 function start_speech_rec_send(conn){
   recognizing = true
-  UserDictation.start();
 
   UserDictation = artyom.newDictation({
     continuous:true, // Enable continuous if HTTPS connection
@@ -51,6 +50,7 @@ function start_speech_rec_send(conn){
     }
   });
 
+  UserDictation.start();
   /*
   // If speech_rec has begin, return
   if (recognizing){return}
