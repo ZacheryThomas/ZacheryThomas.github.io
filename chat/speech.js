@@ -5,6 +5,7 @@ This handles STT for sending data as well as TTS for recieving data
 // If you are using VanillaJS
 const artyom = new Artyom();
 
+let listening = false
 
 // Conneciton Established
 function speech_events(conn) {
@@ -27,7 +28,10 @@ function speech_events(conn) {
     });
 
     conn.on('open', function () {
-        UserDictation.start()
+        if (!listening){
+            UserDictation.start()
+            listening = true
+        }
 
         conn.on('data', function (data) {
             console.log("what the other person said: " + data)
@@ -36,6 +40,7 @@ function speech_events(conn) {
     });
 
     conn.on('close', function () {
-        UserDictation.end()
+        UserDictation.stop()
+        listening = false
     });
 }
