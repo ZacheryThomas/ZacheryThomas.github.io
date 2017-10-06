@@ -26,8 +26,11 @@ function speech_events(conn) {
             alert("Dictation stopped by the user");
         }
     });
-
-    UserDictation.start()
+    
+    if (!listening){
+        UserDictation.start()
+        listening = true
+    }
 
     conn.on('open', function () {
         conn.on('data', function (data) {
@@ -38,5 +41,6 @@ function speech_events(conn) {
 
     conn.on('close', function () {
         UserDictation.stop()
+        listening = false
     });
 }
