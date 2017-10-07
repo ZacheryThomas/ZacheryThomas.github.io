@@ -32,7 +32,7 @@ peer.on('error', function (err) {
 });
 
 peer.on('connection', function (conn) {
-    speech_events(conn)
+    //speech_events(conn)
 });
 
 // Click handlers setup
