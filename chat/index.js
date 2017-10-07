@@ -32,7 +32,7 @@ peer.on('error', function (err) {
 });
 
 peer.on('connection', function (conn) {
-    //speech_events(conn)
+    speech_events(conn)
 });
 
 // Click handlers setup
@@ -90,8 +90,6 @@ function step3(call) {
 
     // Establish connection
     var conn = peer.connect(call.peer)
-
-    speech_events(conn)
 
     window.existingCall.on('close', function () {
         conn.close()
