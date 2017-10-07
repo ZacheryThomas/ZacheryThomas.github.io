@@ -9,10 +9,11 @@ let listening = false
 
 // Conneciton Established
 function speech_events(conn) {
-    if (!listening){
-        listening = true
-        let lastLine = ''
-        let UserDictation = artyom.newDictation({
+    let lastLine = ''
+
+    let UserDictation = undefined
+    conn.on('open', function () {
+        UserDictation = artyom.newDictation({
             continuous: true, // Enable continuous if HTTPS connection
             onResult: function (text) {
                 if (text == '') {
@@ -30,17 +31,14 @@ function speech_events(conn) {
         });
 
         UserDictation.start()
-        
-        conn.on('open', function () {
-            conn.on('data', function (data) {
-                console.log("what the other person said: " + data)
-                responsiveVoice.speak("" + data)
-            });
-        });
 
-        conn.on('close', function () {
-            UserDictation.stop()
-            listening = false
+        conn.on('data', function (data) {
+            console.log("what the other person said: " + data)
+            responsiveVoice.speak("" + data)
         });
-    }
+    });
+
+    conn.on('close', function () {
+        UserDictation.stop()
+    });
 }
