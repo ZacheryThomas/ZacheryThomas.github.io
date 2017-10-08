@@ -23,17 +23,17 @@ function speech_events(conn) {
                 lastLine = text
             },
             onStart: function () {
-                console.log("Dictation started by the user");
+                console.log("Info: Dictation started by the user");
             },
             onEnd: function () {
-                alert("Dictation stopped by the user");
+                alert("Info: Dictation stopped by the user");
             }
         });
 
         UserDictation.start()
 
         conn.on('data', function (data) {
-            console.log("what the other person said: " + data)
+            console.log("Info: what the other person said: " + data)
             responsiveVoice.speak("" + data)
         });
     });
