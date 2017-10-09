@@ -58,6 +58,7 @@ peer.on('call', function (call) {
     call.answer(window.localStream);
     step3(call);
 });
+
 peer.on('error', function (err) {
     alert(err.message);
     // Return to step 2 if error occurs
@@ -66,6 +67,10 @@ peer.on('error', function (err) {
 
 peer.on('connection', function (conn) {
     speech_events(conn)
+
+    window.existingCall.on('close', function () {
+        conn.close()
+    });
 });
 
 // Click handlers setup
@@ -74,7 +79,15 @@ $(function () {
         // Initiate a call!
         var call = peer.call($('#callto-id').val(), window.localStream);
 
+        // Establish connection
+        var conn = peer.connect(call.peer, reliable=true)
+        speech_events(conn)
+        
         step3(call);
+
+        window.existingCall.on('close', function () {
+            conn.close()
+        });
     });
 
     $('#end-call').click(function () {
@@ -120,15 +133,6 @@ function step3(call) {
     });
 
     window.existingCall = call;
-
-    // Establish connection
-    var conn = peer.connect(call.peer)
-
-    speech_events(conn)
-
-    window.existingCall.on('close', function () {
-        conn.close()
-    });
 
     // UI stuff
     $('#their-id').text(call.peer);
