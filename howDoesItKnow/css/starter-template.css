@@ -36,6 +36,10 @@
     font-weight: bold;
 }
 
+.fa-2x {
+    font-size: 1em;
+}
+
 button.advancer {
     position: absolute;
     bottom: 10px;
@@ -54,7 +58,7 @@ form {
     }
 
     .reg-text {
-        font-size: 30px;
+        font-size: 25px;
     }
 }
 

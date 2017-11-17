@@ -1,7 +1,8 @@
 
+/*
 label.btn span {
     font-size: 1.5em ;
-  }
+  }*/
   
   label input[type="radio"] ~ i.fa.fa-circle-o{
       color: #c8c8c8;    display: inline;
@@ -31,8 +32,8 @@ label.btn span {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
+  /*font-size: 14px;
+  font-weight: normal;*/
   line-height: 2em;
   text-align: left;
   white-space: nowrap;
