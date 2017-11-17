@@ -23,7 +23,7 @@ questions = [
     { 'question': 'What year was America founded?', 'answers': ['1911', '2016', '1492'] },
     { 'question': 'What is your favorite pet?', 'answers': ['Dog', 'Cat', 'Ant Farm'] },
     { 'question': 'I miss the...', 'answers': ['Old Kanye', 'Office'] },
-    { 'question': 'Is Uber more popular than Lyft where you ware?', 'answers': ['Yes', 'No'] },
+    { 'question': 'Is Uber more popular than Lyft where you are?', 'answers': ['Yes', 'No'] },
     { 'question': 'Have you ever read a book?', 'answers': ['Yes', 'No'] },
     { 'question': 'Do you watch Anime?', 'answers': ['Yes', 'No'] },
     { 'question': 'Can you run to the nearest City?', 'answers': ['Yes', 'No'] },
