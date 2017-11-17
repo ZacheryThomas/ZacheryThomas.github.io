@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>How Does It Know!?</title>
+
+    <!-- Leaflet.js stuff -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+
+
+</head>
+
+<body>
+    <div id="mapid"></div>
+
+    <!-- not sure if i want a nav right now
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    -->
+
+    <main role="main" id="main" class="container">
+        <div id='stepOne' class="step">
+            <div class="starter-template">
+                <span class="title">I'm gonna guess where you're at right now</span>
+                <p class="lead reg-text">using some simple questions. Lets get started!
+                    <br>
+                </p>
+
+                <button type="button" class="btn btn-primary advancer" id="startButton">START</button>
+
+            </div>
+        </div>
+        <!-- /#stepOne -->
+
+        <div id='stepTwo' class="step">
+            <div class="starter-template">
+                <span id="question" class="title"></span>
+                <div id="answers" class="reg-text"></div>
+
+                <button type="button" class="btn btn-primary advancer" id="nextButton">Next Question</button>
+            </div>
+        </div>
+        <!-- /#stepTwo -->
+
+        <div id='stepThree' class="step">
+            <div class="starter-template">
+                <span class="title">I found ya!</span>
+                <div class="reg-text">You live in <span id="city">city</span>, <span id="region">region</span>!</div>
+                <div class="reg-text">How'd I do? Was i close?</div>
+            </div>
+        </div>
+        <!-- /#stepThree -->
+
+    </main>
+    <!-- /.container -->
+
+
+    <!-- Not sure if i need a footer
+    <footer class="footer navbar-fixed-bottom">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+    -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+
+    <!-- FA icons for buttons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core JS -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="css/touch-radio.css" rel="stylesheet">
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
