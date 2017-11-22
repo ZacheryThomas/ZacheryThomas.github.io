@@ -6,15 +6,14 @@ step 2: survey phase
 step 3: end of survey
 */
 
-// map initializer
-mymap = L.map('mapid').setView([getRandomArbitrary(-75, 75), getRandomArbitrary(0, 180)], 13);
-
 // url for map tilesheet
 tilesheetUrl = 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
 ip_api = 'https://ipapi.co/json/'
 ipInfo = ''
 
+
+// questions for trials
 questions = [
     { 'question': 'If you look outside, are there trees?', 'answers': ['Yes', 'No'] },
     { 'question': 'Mayo or Ketchup?', 'answers': ['Ketchup', 'Mayo', 'Hot Sauce'] },
@@ -36,7 +35,21 @@ questions = [
     { 'question': 'Are you on the internet?', 'answers': ['Yes', 'No'] },
     { 'question': 'Do you lift weights?', 'answers': ['Yes', 'No'] },
     { 'question': 'Hotdog or Hamburger?', 'answers': ['Hotdog', 'Hamburger'] },
+    { 'question': 'Is Macklemore your favorite rapper?', 'answers': ['Yes', 'No'] },
+    { 'question': 'What is your favoite sport?', 'answers': ['Stick Ball', 'Hoop Man', 'Boy Huddle Field Fight'] },
+    { 'question': 'Who gon give it to ya?', 'answers': ['X', 'What?'] },
 ]
+
+// map initilizaiton
+startingCities = [
+    { y: 40.7128, x: -74.0060 },     // New York
+    { y: 34.0522, x: -118.2437 },    // Los Angeles
+    { y: 51.5074, x: 0.1278 },      // London
+    { y: 41.8781, x: -87.6298},      // Chicago
+]
+startingCity = startingCities[Math.floor(Math.random() * startingCities.length)]
+mymap = L.map('mapid').setView([startingCity.y, startingCity.x], 11);
+
 
 /**
  * Returns a random number between min (inclusive) and max (exclusive)
@@ -74,6 +87,14 @@ if (typeof (Number.prototype.toRadians) === "undefined") {
     }
 }
 
+
+/**
+ * Calculates distance between two coordinates
+ * @param {*} lat1 
+ * @param {*} lon1 
+ * @param {*} lat2 
+ * @param {*} lon2 
+ */
 function coodinatesToDistance(lat1, lon1, lat2, lon2) {
     var R = 6371e3; // metres
     var φ1 = lat1.toRadians();
@@ -146,6 +167,8 @@ function step2() {
     nextTrial()
 
     function updateMap(){
+
+        // adds jitter to location based on current progress
         function noise(current){
             return (74 * Math.pow(current, 4))/5775 - (2372 * Math.pow(current, 3))/5775 + (54731 * Math.pow(current, 2))/11550 - (55501 * current)/2310 + 50
         }
