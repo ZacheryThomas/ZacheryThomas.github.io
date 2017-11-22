@@ -1,11 +1,3 @@
-/*
-step2 1: initial phase
-
-step 2: survey phase
-
-step 3: end of survey
-*/
-
 // url for map tilesheet
 tilesheetUrl = 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
@@ -111,6 +103,13 @@ function coodinatesToDistance(lat1, lon1, lat2, lon2) {
 }
 
 
+/**
+step2 1: initial phase
+
+step 2: survey phase
+
+step 3: end of survey
+*/
 function step1() {
     setup()
 
@@ -218,14 +217,6 @@ $(window).resize(function () {
         left: ($(window).width() - $('#main').outerWidth()) / 2,
         top: ($(window).height() - $('#main').outerHeight()) - 30
     });
-
-    //for(btn of $('.advancer')){
-    //    $(btn).css({
-    //        position: 'absolute',
-    //        left: ($(window).width() - $(btn).outerWidth()) / 2,
-    //    })
-    //}
-
 });
 
 // To initially run the function:
