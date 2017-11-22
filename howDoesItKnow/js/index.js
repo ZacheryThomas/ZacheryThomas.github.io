@@ -29,7 +29,13 @@ questions = [
     { 'question': 'Can you run to the nearest City?', 'answers': ['Yes', 'No'] },
     { 'question': "Is it daytime right now?", 'answers': ['Yes', 'No'] },
     { 'question': 'Have you ever cried at your current location?', 'answers': ['Yes', 'No', "Unsure"] },
-    { 'question': 'Quarter Brick, Half a brick, Whole brick', 'answers': ['AYE!', 'OK!'] },
+    { 'question': 'If you look outside, can you see water?', 'answers': ['Yes', 'No'] },
+    { 'question': 'If you look outside, can you see a lake?', 'answers': ['Yes', 'No'] },
+    { 'question': 'If you look outside, can you see an ocean?', 'answers': ['Yes', 'No'] },
+    { 'question': 'What do you call fizzy sugar drink?', 'answers': ['Coke', 'Pop', 'Soda', 'Cola'] },
+    { 'question': 'Are you on the internet?', 'answers': ['Yes', 'No'] },
+    { 'question': 'Do you lift weights?', 'answers': ['Yes', 'No'] },
+    { 'question': 'Hotdog or Hamburger?', 'answers': ['Hotdog', 'Hamburger'] },
 ]
 
 /**
