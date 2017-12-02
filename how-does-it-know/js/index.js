@@ -128,12 +128,15 @@ function step2() {
     $('#stepTwo').show()
     $('#stepThree').hide()
 
+    // Set question answered to false
+    // hide button to advance
+    $('#nextButton').hide()
+    var questionAnswered = false
 
     var current = 0
     var end = 10
     var circle = undefined
-    mymap.setView([0, 0], 2) // default zoom level
-
+    mymap.setView([0, 0], 2) // default zoom level, defalt coords
 
     function nextTrial() {
         current = current + 1
@@ -149,13 +152,19 @@ function step2() {
         $('#answers').empty().append('<div class="btn-group btn-group-vertical" data-toggle="buttons">')
         for (ans of q.answers) {
             $('#answers').append('<label class="btn"> \
-                                  <input style="visibility: hidden" type="radio" name="ans"> \
+                                  <input style="display: none" type="radio" name="ans"> \
                                   <i class="fa fa-circle-o fa-2x"></i> \
                                   <i class="fa fa-dot-circle-o fa-2x"></i> \
                                   <span>' + ans +'</span> \
                                   </label>')
         }
         $('#answers').append('</div>')
+
+        // If label clicked, a question was answered
+        $('label').click(function(){
+            questionAnswered = true
+            $('#nextButton').show()
+        })
 
         // move to finish
         if (current == end) {
@@ -194,8 +203,12 @@ function step2() {
 
 
     $("#nextButton").click(function () {
-        nextTrial()
-        updateMap()
+        if (questionAnswered){
+            $('#nextButton').hide()
+            nextTrial()
+            updateMap()
+            questionAnswered = false
+        }
     });
 }
 
@@ -221,3 +234,8 @@ $(window).resize(function () {
 
 // To initially run the function:
 $(window).resize();
+
+
+//Credit Where its Due
+console.log("%cOriginal idea by Jeremiah Gelb", "background: red; color: white; font-size: x-large");
+console.log("Link here %o", "https://jeremiahgelb.github.io/");
