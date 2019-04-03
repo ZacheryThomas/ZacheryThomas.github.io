@@ -11,7 +11,7 @@ questions = [
     { 'question': 'Is it raining?', 'answers': ['Yes', 'No'] },
     { 'question': 'Do you listen to Soulja Boy?', 'answers': ['Yes', 'No'] },
     { 'question': 'What year was America founded?', 'answers': ['1911', '2016', '1492'] },
-    { 'question': 'What is your favorite pet?', 'answers': ['Dog', 'Cat', 'Ant Farm'] },
+    { 'question': 'What is your favorite pet?', 'answers': ['Dog', 'Cat', 'Other'] },
     { 'question': 'I miss the...', 'answers': ['Old Kanye', 'Office'] },
     { 'question': 'Is Uber more popular than Lyft where you are?', 'answers': ['Yes', 'No'] },
     { 'question': 'Have you ever read a book?', 'answers': ['Yes', 'No'] },
@@ -26,9 +26,11 @@ questions = [
     { 'question': 'Are you on the internet?', 'answers': ['Yes', 'No'] },
     { 'question': 'Do you lift weights?', 'answers': ['Yes', 'No'] },
     { 'question': 'Hotdog or Hamburger?', 'answers': ['Hotdog', 'Hamburger'] },
-    { 'question': 'Is Macklemore your favorite rapper?', 'answers': ['Yes', 'No'] },
-    { 'question': 'What is your favoite sport?', 'answers': ['Stick Ball', 'Hoop Man', 'Boy Huddle Field Fight'] },
     { 'question': 'Who gon give it to ya?', 'answers': ['X', 'What?'] },
+    { 'question': 'Do you own apple airpods?', 'answers': ['Yes', 'No']},
+    { 'question': 'Do you play Fortnite?', 'answers': ['Yes', 'No']},
+    { 'question': 'Have you ever played Minecraft?', 'answers': ['Yes', 'No']},
+    { 'question': 'What is your name?', 'answers': ['Yes', 'No', 'Unsure']},
 ]
 
 // map initilizaiton
