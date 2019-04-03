@@ -1,7 +1,7 @@
 // url for map tilesheet
 tilesheetUrl = 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
-ip_api = 'https:extreme-ip-lookup.com/json/'
+ip_api = 'https://extreme-ip-lookup.com/json/'
 
 
 // questions for trials
