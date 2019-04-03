@@ -2,7 +2,6 @@
 tilesheetUrl = 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
 ip_api = 'https:extreme-ip-lookup.com/json/'
-ipInfo = ''
 
 
 // questions for trials
@@ -68,6 +67,8 @@ function setup() {
 
     $.getJSON(ip_api, function (data) {
         ipinfo = data
+        ipinfo.lat = parseFloat(ipinfo.lat)
+        ipinfo.lon = parseFloat(ipinfo.lon)
     });
 }
 
@@ -182,22 +183,22 @@ function step2() {
         }
 
         // set new zoom lvl and such
-        noiseLat = ipinfo.latitude + getRandomArbitrary(0, noise(current + 1))
-        noiseLong = ipinfo.longitude + getRandomArbitrary(0, noise(current + 1))
+        noiseLat = ipinfo.lat + getRandomArbitrary(0, noise(current + 1))
+        noiseLong = ipinfo.lon + getRandomArbitrary(0, noise(current + 1))
         mymap.setView([noiseLat, noiseLong], Math.floor(end * (current / end)))
 
         if (circle)
             mymap.removeLayer(circle)
 
         console.log(coodinatesToDistance(noiseLat, noiseLong,
-            ipinfo.latitude, ipinfo.longitude))
+            ipinfo.lat, ipinfo.lon))
 
         circle = L.circle([noiseLat, noiseLong], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.2,
             radius: coodinatesToDistance(noiseLat, noiseLong,
-                ipinfo.latitude, ipinfo.longitude) + 20000 // add 20 km to radius
+                ipinfo.lat, ipinfo.lon) + 20000 // add 20 km to radius
         }).addTo(mymap);
     }
 
