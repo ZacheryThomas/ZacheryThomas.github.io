@@ -1,7 +1,7 @@
 // url for map tilesheet
 tilesheetUrl = 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
-ip_api = 'https://ipapi.co/json/'
+ip_api = 'https:extreme-ip-lookup.com/json/'
 ipInfo = ''
 
 
@@ -82,10 +82,10 @@ if (typeof (Number.prototype.toRadians) === "undefined") {
 
 /**
  * Calculates distance between two coordinates
- * @param {*} lat1 
- * @param {*} lon1 
- * @param {*} lat2 
- * @param {*} lon2 
+ * @param {*} lat1
+ * @param {*} lon1
+ * @param {*} lat2
+ * @param {*} lon2
  */
 function coodinatesToDistance(lat1, lon1, lat2, lon2) {
     var R = 6371e3; // metres
