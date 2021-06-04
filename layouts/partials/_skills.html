@@ -1,0 +1,53 @@
+{{ if .Site.Data.content.Skills }}
+<script>
+    function highlighter(evnt) {
+        var text = evnt.innerText
+        var foundin = $(`.experience__bullet:contains(${text})`);
+
+        for(var item of foundin){
+            foundin.css('background-color', '{{ .Site.Params.colorPrimary | default "#ddd" }}')
+            foundin.css('color', '{{ .Site.Params.colorLight | default "#fff"}}')
+        }
+    }
+
+    function removehighlight(evnt) {
+        var text = evnt.innerText
+        var foundin = $(`.experience__bullet:contains(${text})`);
+
+        for(var item of foundin){
+            foundin.css('background-color', '')
+            foundin.css('color', '{{ .Site.Params.colorDark | default "#fff"}}')
+        }
+    }
+</script>
+
+<div class="sideSection">
+    <div class="sideSection__heading">
+        <h2 class="sideSection__title">{{ i18n "skills" }}</h2>
+    </div>
+    <div class="sideSection__content">
+        <ul class="skills">
+            <li>
+                {{ range .Site.Data.content.Skills }}
+                <ul class="skills__group">
+                    <span>{{ .Family | safeHTML }}</span>
+                    {{ range .Items }}
+                    <li
+                    onmouseover="highlighter(this)"
+                    onmouseout="removehighlight(this)"
+                    >{{ . | safeHTML }}</li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>
+
+{{ end }}

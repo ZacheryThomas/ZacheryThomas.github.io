@@ -1,0 +1,117 @@
+BasicInfo:
+  FirstName: Zachery
+  LastName: Thomas
+  Photo: img/zacthoma.png
+  Contacts:
+    - Icon: fas fa-envelope
+      Info: zacherythomas12@gmail.com
+      Link: "mailto: zacherythomas12@gmail.com"
+    - Icon: fas fa-globe
+      Info: zacherythomas.com
+    - Icon: fab fa-linkedin
+      Info: /in/zachery-thomas
+    - Icon: fas fa-map-marker-alt
+      Info: Raleigh N.C.
+
+Profile: I am a DevOps engineer working out of Raleigh N.C.
+
+Experience:
+  - Employer: Cisco Systems
+    Place: Raleigh, NC
+    Positions:
+      - Title: DevOps Engineer
+        Date: Jan 2020 - Present
+        Details:
+          - Managed CI/CD Pipeline (GoCD) for Webex Share, Room Phone and Desk Hub
+          - Added ELK Stack for Metrics, Log Aggregation and Alerting from pipeline and microservices
+          - Managed and modernized Ansible playbooks which allowed for uniform configuration and updates for our 20 build machines across Raleigh and China
+          - Lead move from Rancher 1.0 to OpenShift (Managed Kubernetes cluster) for pipeline and developer Microservices within 2 months. Moved 29 Microservices in total while ensuring services functioned as intended, meet requirements for new cluster and were able to be automatically deployed/updated with CI/CD
+          - Mentor to New Hire and Intern. Worked closely to determine tasks and guide learning
+        Badges: ['Python', 'Docker', 'Ansible', 'Kubernetes (Openshift)', 'CI/CD', 'GoCD', 'ELK', 'Grafana']
+
+      - Title: Software Engineer
+        Date: Aug 2018 - Jan 2020
+        Details:
+          - Prototyped and developed log and metric aggregation service for monitoring applications and servers using ElasticSearch for event storage and ElastAlert for alerting to PagerDuty
+          - Developed CI/CD pipeline with BitBucket, Jenkins, Ansible and Docker to quickly build, test and deploy code changes to remote servers
+        Badges: ['Python', 'Docker', 'Ansible', 'Jenkins', 'ELK']
+
+      - Title: Softare Engineering Summer Intern
+        Date: May 2016 - Aug 2018
+        Details:
+          - Worked with interns to create internal site that tracks CI deployment time using AWS services
+          - Used Jenkins and Gerrit REST APIs to update JIRAs upon completion of Jenkins jobs
+          - Developed tools for automating Kibana setup and log file migration between Docker Containers
+        Badges: ['Docker', 'AWS Lambda', 'S3', 'ElasticsearchService']
+
+  - Employer: LGS Innovations
+    Place: Floram Park, NJ
+    Positions:
+      - Title: Cyber Security Research Intern
+        Date: May - Aug 2015
+        Details:
+          - Researched feasibility of fingerprinting IoT network data from encrypted traffic using Python based, open-source tool called Pacumen
+          - Used Python library, Scapy, and Wireshark to examine and modify information in packet capture files for anti-fingerprinting
+        Badges: ['Python', 'Networking']
+
+  - Employer: NASA Jet Propulsion Lab (JPL)
+    Place: Pasadena, CA
+    Positions:
+      - Title: Radar Science Summer Intern
+        Date: May - Aug 2014
+        Details:
+          - Analyzed simulated SAPHIR RADAR data using MatLab to determine rainfall rate within cloud formations
+          - Developed classifier for rainy sky using Principal Component Analysis
+        Badges: ['MatLab', 'Data Visualization']
+
+Education:
+  - Course: Masters of Computer Science
+    Place: North Carolina State University, Raleigh NC
+    Date: May 2018
+    Details: Major GPA = 3.70
+
+  - Course: Bachelors of Science in Computer Science
+    Place: North Carolina Agricultural and Technical State University, Greensboro NC
+    Date: May 2016
+    Details: Major GPA = 3.94
+
+Skills:
+  - Family: Programming
+    Items:
+      - Python
+      - HTML
+      - Javascript
+      - Bash
+  - Family: Tooling
+    Items:
+      - Kubernetes
+      - Docker
+      - Ansible
+      - Jenkins
+      - GoCD
+      - AWS
+  - Family: Metrics / Log Visualization
+    Items:
+      - ELK Stack
+      - InfluxDB
+      - Grafana
+
+# Languages:
+#   - Name: Portuguese
+#     Level: Native
+#   - Name: English
+#     Level: C2
+#   - Name: Spanish
+#     Level: B1
+#   - Name: German
+#     Level: B1
+
+# Diplomas:
+#   - ISTQB Tester Certification (2019)
+#   - English Cambridge CAE (2009)
+
+Interests:
+  - Anime
+  - Smash Bros
+  - Watch Collecting
+  - Fitness
