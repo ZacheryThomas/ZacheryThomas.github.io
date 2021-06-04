@@ -5,15 +5,20 @@ BasicInfo:
   Contacts:
     - Icon: fas fa-envelope
       Info: zacherythomas12@gmail.com
-      Link: "mailto: zacherythomas12@gmail.com"
+      Link: "mailto:zacherythomas12@gmail.com"
     - Icon: fas fa-globe
       Info: zacherythomas.com
+      Link: https://www.zacherythomas.com
+    - Icon: fab fa-github
+      Info: ZacheryThomas
+      Link: https://github.com/ZacheryThomas
     - Icon: fab fa-linkedin
       Info: /in/zachery-thomas
+      Link: https://www.linkedin.com/in/zachery-thomas
     - Icon: fas fa-map-marker-alt
       Info: Raleigh N.C.
 
-Profile: I am a DevOps engineer working out of Raleigh N.C.
+Profile: I'm a Raleigh N.C. DevOps Engineer / Software Developer. I love working with Docker, Ansible, Kubernetes, AWS and a lot of other cloud tech! Im also into metrics and log visualization using Kibana and Grafana.
 
 Experience:
   - Employer: Cisco Systems
@@ -22,12 +27,13 @@ Experience:
       - Title: DevOps Engineer
         Date: Jan 2020 - Present
         Details:
-          - Managed CI/CD Pipeline (GoCD) for Webex Share, Room Phone and Desk Hub
-          - Added ELK Stack for Metrics, Log Aggregation and Alerting from pipeline and microservices
+          - Managed CI/CD Pipeline (GoCD) for Webex Share, Room Phone and Desk Hub. 24/7 Available for commits, used by 100+ developers in NC, CA, TX and Shanghai
+          # - 24/7 Available for commits. Used by 100+ developers in NC, CA, TX and Shanghai. Handles 30 Commits per day in largest pipeline. End to end test suite of 135 tests with up to 80+ test suites running in parallel.
+          - Lead move from Rancher 1.0 to OpenShift (Managed Kubernetes cluster) for pipeline and developer Microservices within 2 months. Moved 29 Microservices in total while ensuring services functioned as intended, meet security requirements for new cluster and were able to be automatically deployed/updated with CI/CD
+          - Added ELK Stack for Metrics, Log Aggregation and Alerting from CI/CD pipeline and microservices
           - Managed and modernized Ansible playbooks which allowed for uniform configuration and updates for our 20 build machines across Raleigh and China
-          - Lead move from Rancher 1.0 to OpenShift (Managed Kubernetes cluster) for pipeline and developer Microservices within 2 months. Moved 29 Microservices in total while ensuring services functioned as intended, meet requirements for new cluster and were able to be automatically deployed/updated with CI/CD
-          - Mentor to New Hire and Intern. Worked closely to determine tasks and guide learning
-        Badges: ['Python', 'Docker', 'Ansible', 'Kubernetes (Openshift)', 'CI/CD', 'GoCD', 'ELK', 'Grafana']
+          - Mentor to two New Hires and Intern. Worked closely to determine tasks and guide learning
+        Badges: ['Python', 'Docker', 'Ansible', 'Kubernetes (Openshift)', 'CI/CD', 'GoCD', 'ELK', 'InfluxDB', 'Grafana']
 
       - Title: Software Engineer
         Date: Aug 2018 - Jan 2020
@@ -115,3 +121,5 @@ Interests:
   - Smash Bros
   - Watch Collecting
   - Fitness
+  - Volleyball
+  - Soccer
