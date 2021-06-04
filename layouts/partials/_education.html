@@ -1,0 +1,33 @@
+{{ if .Site.Data.content.Education }}
+<div id="education" class="section">
+    <div class="section__heading">
+        <h2 class="section__title">
+            {{ i18n "education" }}
+        </h2>
+    </div>
+    <div class="section__content">
+        {{ range .Site.Data.content.Education }}
+            <div class="education__item">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <h3 class="education__title">{{ .Course | safeHTML }}</h3>
+                        </td>
+                        <td>
+                            <h4 class="education__date">{{ .Date | safeHTML }}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 class="education__place">{{ .Place | safeHTML }}</h4>
+                        </td>
+                        <td>
+                            <div class="education__description">{{ .Details | safeHTML }}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
