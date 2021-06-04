@@ -7,6 +7,8 @@
         for(var item of foundin){
             foundin.css('background-color', '{{ .Site.Params.colorPrimary | default "#ddd" }}')
             foundin.css('color', '{{ .Site.Params.colorLight | default "#fff"}}')
+            foundin.css('border-radius', '0.9rem')
+            foundin.css('padding', '0.1rem 0.6rem')
         }
     }
 
@@ -16,6 +18,8 @@
 
         for(var item of foundin){
             foundin.css('background-color', '')
+            foundin.css('border-radius', '')
+            foundin.css('padding', '')
             foundin.css('color', '{{ .Site.Params.colorDark | default "#fff"}}')
         }
     }
