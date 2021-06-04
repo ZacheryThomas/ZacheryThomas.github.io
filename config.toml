@@ -1,8 +1,8 @@
-baseURL = "https://example.com/"
+baseURL = "/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 theme = "almeida-cv"
-title = "Example - CV"
+title = "Zachery Thomas"
 
 [params]
 colorDark = "#666"
