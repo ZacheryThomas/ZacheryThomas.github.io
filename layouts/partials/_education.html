@@ -14,7 +14,7 @@
                             <h3 class="education__title">{{ .Course | safeHTML }}</h3>
                         </td>
                         <td>
-                            <h4 class="education__date">{{ .Date | safeHTML }}</h4>
+                            <h4 class="education__date" style="float: right;">{{ .Date | safeHTML }}</h4>
                         </td>
                     </tr>
                     <tr>
@@ -22,7 +22,7 @@
                             <h4 class="education__place">{{ .Place | safeHTML }}</h4>
                         </td>
                         <td>
-                            <div class="education__description">{{ .Details | safeHTML }}</div>
+                            <div class="education__description" style="float: right;">{{ .Details | safeHTML }}</div>
                         </td>
                     </tr>
                 </table>
