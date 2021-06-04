@@ -1,0 +1,15 @@
+{{ if .Site.Data.content.BasicInfo.Contacts }}
+<div class="sideSection contact">
+    <ul>
+        {{ range .Site.Data.content.BasicInfo.Contacts }}
+        <li
+        class="contact__item"
+        {{ if .Link }} onmouseover="this.style.cursor = 'pointer'" {{ end }}
+        {{ if .Link }} onclick="window.open('{{ .Link }}')" {{ end }}
+        >
+            <i class="{{ .Icon }}"></i><span>{{ .Info | safeHTML }}</span>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
