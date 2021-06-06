@@ -1,29 +1,23 @@
 {{ if .Site.Data.content.Education }}
-<div id="education" class="section">
-    <div class="section__heading">
-        <h2 class="section__title">
+<div id="education" class="sideSection">
+    <div class="sideSection__heading">
+        <h2 class="sideSection__title">
             {{ i18n "education" }}
         </h2>
     </div>
-    <div class="section__content">
+    <div class="sideSection__content">
         {{ range .Site.Data.content.Education }}
             <div class="education__item">
+                <h4 class="education__title">{{ .Course | safeHTML }}</h4>
+
+                <h5 class="education__school">{{ .School | safeHTML }}</h5>
+
+                <h5 class="education__place">{{ .Place | safeHTML }}</h5>
+
                 <table style="width: 100%;">
                     <tr>
-                        <td>
-                            <h3 class="education__title">{{ .Course | safeHTML }}</h3>
-                        </td>
-                        <td>
-                            <h4 class="education__date" style="float: right;">{{ .Date | safeHTML }}</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4 class="education__place">{{ .Place | safeHTML }}</h4>
-                        </td>
-                        <td>
-                            <div class="education__description" style="float: right;">{{ .Details | safeHTML }}</div>
-                        </td>
+                        <td><div class="education__date" style="float: left;">{{ .Date | safeHTML }}</div></td>
+                        <td><div class="education__description" style="float: right;">{{ .Details | safeHTML }}</div></td>
                     </tr>
                 </table>
             </div>

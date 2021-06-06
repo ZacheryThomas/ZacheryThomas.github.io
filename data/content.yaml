@@ -29,7 +29,7 @@ Experience:
         Details:
           - Managed CI/CD Pipeline (GoCD) for Webex Share, Room Phone and Desk Hub. 24/7 Available for commits, used by 100+ developers in NC, CA, TX and Shanghai
           # - 24/7 Available for commits. Used by 100+ developers in NC, CA, TX and Shanghai. Handles 30 Commits per day in largest pipeline. End to end test suite of 135 tests with up to 80+ test suites running in parallel.
-          - Lead move from Rancher 1.0 to OpenShift (Managed Kubernetes cluster) for pipeline and developer Microservices within 2 months. Moved 29 Microservices in total while ensuring services functioned as intended, meet security requirements for new cluster and were able to be automatically deployed/updated with CI/CD
+          - Led move from Rancher 1.0 to OpenShift (Managed Kubernetes cluster) for pipeline and developer Microservices within 2 months. Moved 29 Microservices in total while ensuring services functioned as intended, meet security requirements for new cluster and were able to be automatically deployed/updated with CI/CD
           - Added ELK Stack for Metrics, Log Aggregation and Alerting from CI/CD pipeline and microservices
           - Managed and modernized Ansible playbooks which allowed for uniform configuration and updates for our 20 build machines across Raleigh and China
           - Mentor to two New Hires and Intern. Worked closely to determine tasks and guide learning
@@ -70,14 +70,33 @@ Experience:
           - Developed classifier for rainy sky using Principal Component Analysis
         Badges: ['MatLab', 'Data Visualization']
 
+Awards:
+  - Title: On Tech Pilar for RTP Early Talent Employee Resource Group
+    Details:
+      - Collected data about Resource Group given members's event attendence data and LDAP
+      - Constructed visualizations with Metabase to display metrics about demographics of New Hires (common Orginizations/Job Titles, Year they joined Cisco, What State they live in, etc.)
+    Date: Aug 2020
+
+  - Title: GEM Fellowship
+    Details:
+      - I received this fellowship through the National GEM Consortium. This fellowship covered tuition, fees and housing for the duration of my Master's program at North Carolina State University.
+    Date: Jun 2016
+
+  - Title: Dowdy Scholarship
+    Details:
+      - This scholarship covered tuition, fees and housing during my stay at A&T State University. To keep the scholarship I had to maintain over a 3.30 cumulative GPA.
+    Date: Apr 2012
+
 Education:
   - Course: Masters of Computer Science
-    Place: North Carolina State University, Raleigh NC
+    School: North Carolina State University
+    Place: Raleigh NC
     Date: May 2018
     Details: Major GPA = 3.70
 
-  - Course: Bachelors of Science in Computer Science
-    Place: North Carolina Agricultural and Technical State University, Greensboro NC
+  - Course: "BS in Computer Science"
+    School: North Carolina Agricultural and Technical State University
+    Place: Greensboro NC
     Date: May 2016
     Details: Major GPA = 3.94
 

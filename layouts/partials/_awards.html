@@ -1,0 +1,26 @@
+{{ if .Site.Data.content.Awards }}
+<div id="awards" class="section">
+    <div class="section__heading">
+        <h2 class="section__title">{{ i18n "leadership_and_awards" }}</h2>
+    </div>
+    <div class="section__content">
+        <div class="awards">
+            {{ range .Site.Data.content.Awards }}
+            <div class="awards__item">
+                <div class="awards__header">
+                    <h3 class="awards__company">
+                        {{ .Title | safeHTML }}
+                    </h3>
+                    <h3 class="awards__date">{{ .Date | safeHTML }}</h3>
+                </div>
+                <div>
+                    {{ range .Details }}
+                    <li class="awards__bullet">{{ . }}</li>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
