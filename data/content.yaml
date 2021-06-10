@@ -18,7 +18,7 @@ BasicInfo:
     - Icon: fas fa-map-marker-alt
       Info: Raleigh N.C.
 
-Profile: I'm a Raleigh N.C. DevOps Engineer / Software Developer. I love working with Docker, Ansible, Kubernetes, AWS and a lot of other cloud tech! Im also into metrics and log visualization using Kibana and Grafana.
+Profile: I'm a Raleigh N.C. DevOps Engineer / Software Developer. I love working with Docker, Ansible, Kubernetes, AWS and a lot of other cloud tech! I'm also into metrics and log visualization using Kibana and Grafana.
 
 Experience:
   - Employer: Cisco Systems
@@ -71,10 +71,10 @@ Experience:
         Badges: ['MatLab', 'Data Visualization']
 
 Awards:
-  - Title: On Tech Pilar for RTP Early Talent Employee Resource Group
+  - Title: On Tech Pillar for RTP Early Talent Employee Resource Group
     Details:
       - Collected data about Resource Group given members's event attendence data and LDAP
-      - Constructed visualizations with Metabase to display metrics about demographics of New Hires (common Orginizations/Job Titles, Year they joined Cisco, What State they live in, etc.)
+      - Constructed visualizations with Metabase to display metrics about demographics of New Hires (common Organizations/Job Titles, Year they joined Cisco, What State they live in, etc.)
     Date: Aug 2020
 
   - Title: GEM Fellowship
@@ -136,9 +136,9 @@ Skills:
 #   - English Cambridge CAE (2009)
 
 Interests:
-  - Anime
   - Smash Bros
   - Watch Collecting
+  - Film Photography
   - Fitness
   - Volleyball
   - Soccer
